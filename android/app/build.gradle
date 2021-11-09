@@ -4,6 +4,7 @@ apply plugin: 'com.android.application'
 // automagically activated with google-services.json
 if (googleServicesEnabled) {
     apply plugin: 'com.google.firebase.crashlytics'
+    apply plugin: 'com.google.firebase.firebase-perf'
 }
 
 // Use the number of seconds/10 since Jan 1 2019 as the versionCode.

@@ -85,7 +85,11 @@ dependencies {
     implementation project(':react-native-video')
     implementation project(':react-native-webrtc')
     implementation project(':react-native-webview')
-
+    implementation project(':react-native-webview')
+    implementation project(':react-native-firebase_app')
+    implementation project(':react-native-firebase_analytics')
+    implementation project(':react-native-firebase_crashlytics')
+    implementation project(':react-native-firebase_perf')
     testImplementation 'junit:junit:4.12'
 }
 

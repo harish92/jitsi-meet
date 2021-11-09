@@ -20,6 +20,9 @@ import android.app.Activity;
 
 import androidx.annotation.Nullable;
 
+import com.brentvatne.react.ReactVideoPackage;
+import com.calendarevents.CalendarEventsPackage;
+import com.corbt.keepawake.KCKeepAwakePackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
@@ -29,15 +32,37 @@ import com.facebook.react.common.LifecycleState;
 import com.facebook.react.devsupport.DevInternalSettings;
 import com.facebook.react.jscexecutor.JSCExecutorFactory;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.facebook.react.shell.MainReactPackage;
 import com.facebook.react.uimanager.ViewManager;
+import com.horcrux.svg.SvgPackage;
+import com.kevinresol.react_native_default_preference.RNDefaultPreferencePackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.oblador.performance.PerformancePackage;
+import com.ocetnik.timer.BackgroundTimerPackage;
 import com.oney.WebRTCModule.RTCVideoViewManager;
 import com.oney.WebRTCModule.WebRTCModule;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import com.reactnativecommunity.netinfo.NetInfoPackage;
+import com.reactnativecommunity.slider.ReactSliderPackage;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
+import com.rnimmersive.RNImmersivePackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.swmansion.reanimated.ReanimatedPackage;
+import com.swmansion.rnscreens.RNScreensPackage;
+import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
+import com.zmxv.RNSound.RNSoundPackage;
 
 import org.devio.rn.splashscreen.SplashScreenModule;
+import org.reactnative.maskedview.RNCMaskedViewPackage;
 import org.webrtc.SoftwareVideoDecoderFactory;
 import org.webrtc.SoftwareVideoEncoderFactory;
 import org.webrtc.audio.AudioDeviceModule;
 import org.webrtc.audio.JavaAudioDeviceModule;
+import io.invertase.firebase.*;
+import io.invertase.firebase.analytics.ReactNativeFirebaseAnalyticsPackage;
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+import io.invertase.firebase.crashlytics.ReactNativeFirebaseCrashlyticsPackage;
+import io.invertase.firebase.perf.ReactNativeFirebasePerfPackage;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -175,26 +200,30 @@ class ReactInstanceManagerHolder {
 
         List<ReactPackage> packages
             = new ArrayList<>(Arrays.asList(
-                new com.reactnativecommunity.asyncstorage.AsyncStoragePackage(),
-                new com.ocetnik.timer.BackgroundTimerPackage(),
-                new com.calendarevents.CalendarEventsPackage(),
-                new com.corbt.keepawake.KCKeepAwakePackage(),
-                new com.facebook.react.shell.MainReactPackage(),
-                new com.reactnativecommunity.netinfo.NetInfoPackage(),
-                new com.oblador.performance.PerformancePackage(),
-                new com.reactnativecommunity.slider.ReactSliderPackage(),
-                new com.brentvatne.react.ReactVideoPackage(),
-                new com.swmansion.reanimated.ReanimatedPackage(),
-                new org.reactnative.maskedview.RNCMaskedViewPackage(),
-                new com.reactnativecommunity.webview.RNCWebViewPackage(),
-                new com.kevinresol.react_native_default_preference.RNDefaultPreferencePackage(),
-                new com.learnium.RNDeviceInfo.RNDeviceInfo(),
-                new com.swmansion.gesturehandler.react.RNGestureHandlerPackage(),
-                new com.rnimmersive.RNImmersivePackage(),
-                new com.swmansion.rnscreens.RNScreensPackage(),
-                new com.zmxv.RNSound.RNSoundPackage(),
-                new com.th3rdwave.safeareacontext.SafeAreaContextPackage(),
-                new com.horcrux.svg.SvgPackage(),
+                new AsyncStoragePackage(),
+                new BackgroundTimerPackage(),
+                new CalendarEventsPackage(),
+                new KCKeepAwakePackage(),
+                new MainReactPackage(),
+                new NetInfoPackage(),
+                new PerformancePackage(),
+                new ReactSliderPackage(),
+                new ReactVideoPackage(),
+                new ReanimatedPackage(),
+                new RNCMaskedViewPackage(),
+                new RNCWebViewPackage(),
+                new RNDefaultPreferencePackage(),
+                new RNDeviceInfo(),
+                new RNGestureHandlerPackage(),
+                new RNImmersivePackage(),
+                new RNScreensPackage(),
+                new RNSoundPackage(),
+                new SafeAreaContextPackage(),
+                new SvgPackage(),
+                new ReactNativeFirebaseAppPackage(),
+                new ReactNativeFirebaseAnalyticsPackage(),
+                new ReactNativeFirebaseCrashlyticsPackage(),
+                new ReactNativeFirebasePerfPackage(),
                 new ReactPackageAdapter() {
                     @Override
                     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
