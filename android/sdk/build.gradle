@@ -58,11 +58,16 @@ dependencies {
         }
     } else {
         implementation project(':react-native-amplitude')
-        implementation project(':react-native-device-info')
-        implementation(project(":react-native-google-signin")) {
+        // implementation project(':react-native-device-info')
+        implementation(project(':react-native-device-info')) {
+            exclude group: 'com.google.firebase'
             exclude group: 'com.google.android.gms'
-            exclude group: 'androidx'
+            exclude group: 'com.android.installreferrer'
         }
+        // implementation(project(":react-native-google-signin")) {
+        //     exclude group: 'com.google.android.gms'
+        //     exclude group: 'androidx'
+        // }
     }
 
     implementation project(':react-native-async-storage')
@@ -74,7 +79,7 @@ dependencies {
     implementation project(':react-native-immersive')
     implementation project(':react-native-keep-awake')
     implementation project(':react-native-masked-view_masked-view')
-    implementation project(':react-native-performance')
+//    implementation project(':react-native-performance')
     implementation project(':react-native-reanimated')
     implementation project(':react-native-safe-area-context')
     implementation project(':react-native-screens')
@@ -85,11 +90,6 @@ dependencies {
     implementation project(':react-native-video')
     implementation project(':react-native-webrtc')
     implementation project(':react-native-webview')
-    implementation project(':react-native-webview')
-    implementation project(':react-native-firebase_app')
-    implementation project(':react-native-firebase_analytics')
-    implementation project(':react-native-firebase_crashlytics')
-    implementation project(':react-native-firebase_perf')
     testImplementation 'junit:junit:4.12'
 }
 
@@ -194,7 +194,6 @@ android.libraryVariants.all { def variant ->
         }
     }
 }
-
 
 publishing {
     publications {

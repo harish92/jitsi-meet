@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 // Crashlytics integration is done as part of Firebase now, so it gets
 // automagically activated with google-services.json
-if (googleServicesEnabled) {
-    apply plugin: 'com.google.firebase.crashlytics'
-    apply plugin: 'com.google.firebase.firebase-perf'
-}
+// if (googleServicesEnabled) {
+//    apply plugin: 'com.google.firebase.crashlytics'
+//    apply plugin: 'com.google.firebase.firebase-perf'
+// }
 
 // Use the number of seconds/10 since Jan 1 2019 as the versionCode.
 // This lets us upload a new build at most every 10 seconds for the
@@ -58,16 +58,16 @@ android {
         }
     }
 
-    sourceSets {
-        main {
-            java {
-                if (rootProject.ext.libreBuild) {
-                    srcDir "src"
-                    exclude "**/GoogleServicesHelper.java"
-                }
-            }
-        }
-    }
+//    sourceSets {
+//        main {
+//            java {
+//                if (rootProject.ext.libreBuild) {
+//                    srcDir "src"
+//                    exclude "**/GoogleServicesHelper.java"
+//                }
+//            }
+//        }
+//    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -82,14 +82,14 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 
     if (!rootProject.ext.libreBuild) {
-        implementation 'com.google.android.gms:play-services-auth:16.0.1'
+        // implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
         // Firebase
         //  - Crashlytics
         //  - Dynamic Links
-        implementation 'com.google.firebase:firebase-analytics:17.5.0'
-        implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
-        implementation 'com.google.firebase:firebase-dynamic-links:19.1.0'
+//        implementation 'com.google.firebase:firebase-analytics:17.5.0'
+//        implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
+//        implementation 'com.google.firebase:firebase-dynamic-links:19.1.0'
     }
 
     implementation project(':sdk')
@@ -170,8 +170,25 @@ gradle.projectsEvaluated {
         packageTask.dependsOn(currentRunPackagerTask)
     }
 
+    android.applicationVariants.all { variant ->
+        project.tasks.each { t ->
+            if (t.name.contains("GoogleServices")) {
+                // Remove google services plugin
+                variant.getVariantData().resourceGenTask.getTaskDependencies().values.remove(t);
+                // For latest gradle plugin use this instead
+                // variant.getVariantData().taskContainer.sourceGenTask.getTaskDependencies().getDependencies().remove(t)
+            }
+            if (t.name.contains("fabric")) {
+                // Remove google services plugin
+                variant.getVariantData().resourceGenTask.getTaskDependencies().values.remove(t);
+                // For latest gradle plugin use this instead
+                // variant.getVariantData().taskContainer.sourceGenTask.getTaskDependencies().getDependencies().remove(t)
+            }
+        }
+    }
+
 }
 
-if (googleServicesEnabled) {
-    apply plugin: 'com.google.gms.google-services'
-}
+// if (googleServicesEnabled) {
+//     apply plugin: 'com.google.gms.google-services'
+// }

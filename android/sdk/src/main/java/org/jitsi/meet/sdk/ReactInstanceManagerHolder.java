@@ -37,7 +37,6 @@ import com.facebook.react.uimanager.ViewManager;
 import com.horcrux.svg.SvgPackage;
 import com.kevinresol.react_native_default_preference.RNDefaultPreferencePackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.oblador.performance.PerformancePackage;
 import com.ocetnik.timer.BackgroundTimerPackage;
 import com.oney.WebRTCModule.RTCVideoViewManager;
 import com.oney.WebRTCModule.WebRTCModule;
@@ -58,11 +57,7 @@ import org.webrtc.SoftwareVideoDecoderFactory;
 import org.webrtc.SoftwareVideoEncoderFactory;
 import org.webrtc.audio.AudioDeviceModule;
 import org.webrtc.audio.JavaAudioDeviceModule;
-import io.invertase.firebase.*;
-import io.invertase.firebase.analytics.ReactNativeFirebaseAnalyticsPackage;
-import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
-import io.invertase.firebase.crashlytics.ReactNativeFirebaseCrashlyticsPackage;
-import io.invertase.firebase.perf.ReactNativeFirebasePerfPackage;
+
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -206,7 +201,6 @@ class ReactInstanceManagerHolder {
                 new KCKeepAwakePackage(),
                 new MainReactPackage(),
                 new NetInfoPackage(),
-                new PerformancePackage(),
                 new ReactSliderPackage(),
                 new ReactVideoPackage(),
                 new ReanimatedPackage(),
@@ -220,10 +214,6 @@ class ReactInstanceManagerHolder {
                 new RNSoundPackage(),
                 new SafeAreaContextPackage(),
                 new SvgPackage(),
-                new ReactNativeFirebaseAppPackage(),
-                new ReactNativeFirebaseAnalyticsPackage(),
-                new ReactNativeFirebaseCrashlyticsPackage(),
-                new ReactNativeFirebasePerfPackage(),
                 new ReactPackageAdapter() {
                     @Override
                     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
@@ -245,13 +235,13 @@ class ReactInstanceManagerHolder {
         }
 
         // RNGoogleSigninPackage
-        try {
-            Class<?> googlePackageClass = Class.forName("co.apptailor.googlesignin.RNGoogleSigninPackage");
-            Constructor constructor = googlePackageClass.getConstructor();
-            packages.add((ReactPackage)constructor.newInstance());
-        } catch (Exception e) {
-            // Ignore any error, the module is not compiled when LIBRE_BUILD is enabled.
-        }
+        // try {
+        //     Class<?> googlePackageClass = Class.forName("co.apptailor.googlesignin.RNGoogleSigninPackage");
+        //     Constructor constructor = googlePackageClass.getConstructor();
+        //     packages.add((ReactPackage)constructor.newInstance());
+        // } catch (Exception e) {
+        //     // Ignore any error, the module is not compiled when LIBRE_BUILD is enabled.
+        // }
 
         // Keep on using JSC, the jury is out on Hermes.
         JSCExecutorFactory jsFactory

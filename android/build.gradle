@@ -11,9 +11,9 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.2'
-        classpath 'com.google.gms:google-services:4.3.4'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.4.1'
-        classpath 'com.google.firebase:perf-plugin:1.4.0'
+        // classpath 'com.google.gms:google-services:4.3.4'
+//        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.4.1'
+//        classpath 'com.google.firebase:perf-plugin:1.4.0'
     }
 }
 
@@ -38,7 +38,7 @@ ext {
     // Libre build
     libreBuild = (System.env.LIBRE_BUILD ?: "false").toBoolean()
 
-    googleServicesEnabled = project.file('app/google-services.json').exists() && !libreBuild
+    googleServicesEnabled = false
 }
 
 allprojects {
@@ -64,6 +64,12 @@ allprojects {
                 }
             }
         }
+    }
+
+    configurations {
+        all*.exclude group: 'com.google.firebase', module: 'firebase-core'
+        all*.exclude group: 'com.google.firebase', module: 'firebase-iid'
+        all*.exclude group: 'io.invertase.firebase'
     }
 
     // Third-party react-native modules which Jitsi Meet SDK for Android depends

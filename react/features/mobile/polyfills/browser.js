@@ -386,21 +386,21 @@ function _visitNode(node, callback) {
 
     // RN 0.61 does not provide performance.now(), and react-native-performance
     // requires it.
-    const now = () => Date.now();
+    // const now = () => Date.now();
 
-    if (!global.performance) {
-        global.performance = {};
-    }
+    // if (!global.performance) {
+    //     global.performance = {};
+    // }
 
-    if (!global.performance.now) {
-        global.performance.now = now;
-    }
+    // if (!global.performance.now) {
+    //     global.performance.now = now;
+    // }
 
-    const perf = require('react-native-performance');
+    // const perf = require('react-native-performance');
 
-    global.performance = perf.default;
-    global.performance.now = now;
-    global.PerformanceObserver = perf.PerformanceObserver;
+    // global.performance = perf.default;
+    // global.performance.now = now;
+    // global.PerformanceObserver = perf.PerformanceObserver;
 
     // CallStats
     //
