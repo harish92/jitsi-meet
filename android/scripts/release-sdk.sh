@@ -125,6 +125,7 @@ popd
 
 if [[ $DO_GIT_TAG == 1 ]]; then
     # The artifacts are now on the Maven repo, commit them
+    echo "Pushing JSC ${JSC_VERSION} to the Maven repo"
     pushd ${MVN_REPO_PATH}
     git add -A .
     git commit -m "Jitsi Meet SDK + dependencies: ${SDK_VERSION}"
