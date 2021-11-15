@@ -48,11 +48,11 @@
         </service>
 
         <service
-            android:name="org.jitsi.meet.sdk.JitsiMeetOngoingConferenceService"
+            android:name="org.jitsi.meet.sdk.com.jitsi.meet.sdk.JitsiMeetOngoingConferenceService"
             android:foregroundServiceType="mediaProjection" />
 
         <provider
-            android:name="com.reactnativecommunity.webview.RNCWebViewFileProvider"
+            android:name="org.reactnativecommunity.webview.RNCWebViewFileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:enabled="false"
             tools:replace="android:authorities">

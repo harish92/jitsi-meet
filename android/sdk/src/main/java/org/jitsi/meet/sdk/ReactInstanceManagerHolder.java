@@ -20,9 +20,9 @@ import android.app.Activity;
 
 import androidx.annotation.Nullable;
 
-import com.brentvatne.react.ReactVideoPackage;
-import com.calendarevents.CalendarEventsPackage;
-import com.corbt.keepawake.KCKeepAwakePackage;
+import org.brentvatne.react.ReactVideoPackage;
+import org.calendarevents.CalendarEventsPackage;
+import org.corbt.keepawake.KCKeepAwakePackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
@@ -34,25 +34,27 @@ import com.facebook.react.jscexecutor.JSCExecutorFactory;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.react.uimanager.ViewManager;
-import com.horcrux.svg.SvgPackage;
-import com.kevinresol.react_native_default_preference.RNDefaultPreferencePackage;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.ocetnik.timer.BackgroundTimerPackage;
-import com.oney.WebRTCModule.RTCVideoViewManager;
-import com.oney.WebRTCModule.WebRTCModule;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
-import com.reactnativecommunity.netinfo.NetInfoPackage;
-import com.reactnativecommunity.slider.ReactSliderPackage;
-import com.reactnativecommunity.webview.RNCWebViewPackage;
-import com.rnimmersive.RNImmersivePackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.swmansion.reanimated.ReanimatedPackage;
-import com.swmansion.rnscreens.RNScreensPackage;
-import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
-import com.zmxv.RNSound.RNSoundPackage;
+import org.horcrux.svg.SvgPackage;
+import org.jitsi.meet.sdk.net.NAT64AddrInfoModule;
+import org.kevinresol.react_native_default_preference.RNDefaultPreferencePackage;
+import org.learnium.RNDeviceInfo.RNDeviceInfo;
+import org.ocetnik.timer.BackgroundTimerPackage;
+import org.oney.WebRTCModule.RTCVideoViewManager;
+import org.oney.WebRTCModule.WebRTCModule;
+import org.reactnative.maskedview.RNCMaskedViewPackage;
+import org.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import org.reactnativecommunity.netinfo.NetInfoPackage;
+import org.reactnativecommunity.slider.ReactSliderPackage;
+import org.reactnativecommunity.webview.RNCWebViewPackage;
+import org.rnimmersive.RNImmersivePackage;
+import org.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import org.swmansion.reanimated.ReanimatedPackage;
+import org.swmansion.rnscreens.RNScreensPackage;
+import org.th3rdwave.safeareacontext.SafeAreaContextPackage;
+import org.zmxv.RNSound.RNSoundPackage;
 
 import org.devio.rn.splashscreen.SplashScreenModule;
-import org.reactnative.maskedview.RNCMaskedViewPackage;
+
 import org.webrtc.SoftwareVideoDecoderFactory;
 import org.webrtc.SoftwareVideoEncoderFactory;
 import org.webrtc.audio.AudioDeviceModule;
@@ -63,6 +65,10 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import io.invertase.firebase.analytics.ReactNativeFirebaseAnalyticsPackage;
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+import io.invertase.firebase.crashlytics.ReactNativeFirebaseCrashlyticsPackage;
 
 class ReactInstanceManagerHolder {
     /**
@@ -91,7 +97,7 @@ class ReactInstanceManagerHolder {
                 new PictureInPictureModule(reactContext),
                 new ProximityModule(reactContext),
                 new WiFiStatsModule(reactContext),
-                new org.jitsi.meet.sdk.net.NAT64AddrInfoModule(reactContext)));
+                new NAT64AddrInfoModule(reactContext)));
 
         if (AudioModeModule.useConnectionService()) {
             nativeModules.add(new RNConnectionService(reactContext));
@@ -214,6 +220,9 @@ class ReactInstanceManagerHolder {
                 new RNSoundPackage(),
                 new SafeAreaContextPackage(),
                 new SvgPackage(),
+                new ReactNativeFirebaseAnalyticsPackage(),
+                new ReactNativeFirebaseAppPackage(),
+                new ReactNativeFirebaseCrashlyticsPackage(),
                 new ReactPackageAdapter() {
                     @Override
                     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
@@ -227,7 +236,7 @@ class ReactInstanceManagerHolder {
 
         // AmplitudeReactNativePackage
         try {
-            Class<?> amplitudePackageClass = Class.forName("com.amplitude.reactnative.AmplitudeReactNativePackage");
+            Class<?> amplitudePackageClass = Class.forName("org.amplitude.reactnative.AmplitudeReactNativePackage");
             Constructor constructor = amplitudePackageClass.getConstructor();
             packages.add((ReactPackage)constructor.newInstance());
         } catch (Exception e) {
